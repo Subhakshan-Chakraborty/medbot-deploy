@@ -1,0 +1,3 @@
+[console_scripts]
+protoc-gen-protobuf-to-pydantic=protobuf_to_pydantic.plugin.main:main
+

@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: grpc-gateway
+Version: 0.0.1
+Summary: Python gRPC Gateway
+Home-page: https://github.com/python-pai/grpc-gateway
+License: Apache Software License
+Author: so1n
+Author-email: so1n897046026@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: template
+Requires-Dist: jinja2 (>=2.0.0) ; extra == "template"
+Requires-Dist: pait[grpc] (==1.0.0a6)
+Requires-Dist: protobuf-to-pydantic (>=0.1.7.3,<0.2.0.0)
+Project-URL: Changelog, https://github.com/python-pai/grpc-gateway/pait/blob/master/CHANGELOG.md
+Project-URL: Documentation, https://so1n.me/pait/
+Project-URL: Repository, https://github.com/python-pai/grpc-gateway
+Project-URL: Source, https://github.com/python-pai/grpc-gateway
+Project-URL: Tracker, https://github.com/python-pai/grpc-gateway/issue
+Description-Content-Type: text/markdown
+
+

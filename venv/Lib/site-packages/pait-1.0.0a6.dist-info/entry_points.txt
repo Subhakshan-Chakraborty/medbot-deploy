@@ -1,0 +1,3 @@
+[console_scripts]
+protoc-gen-pait-route=pait.grpc.plugin.main:main
+

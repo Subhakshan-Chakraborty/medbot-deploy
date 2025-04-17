@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - MedBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: #121212;
+            color: #eee;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .about-content {
+            flex: 1;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            width: 100px;  
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .start-btn {
+            margin-top: 30px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            background: #3e8ef7;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .start-btn:hover {
+            background: #256fe3;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='medibot-1.png') }}" alt="Robot">
+        </div>
+        <div class="about-content">
+            <img src="{{ url_for('static', filename='medibot_logo_1.png') }}" alt="MedBot Logo" class="logo">
+            <h1>Welcome to MedBot</h1>
+            <p>
+                MedBot is your AI-powered medical assistant designed to provide health guidance
+                and education. It uses trusted medical data to help answer your questions, suggest possible remedies,
+                and provide general wellness advice.
+            </p>
+            <p>
+                Please note: MedBot is not a replacement for a doctor or professional diagnosis. 
+                For emergencies or serious concerns, always consult a licensed medical professional.
+            </p>
+            <a href="/chat"><button class="start-btn">Go to Chat</button></a>
+        </div>
+    </div>
+</body>
+</html>

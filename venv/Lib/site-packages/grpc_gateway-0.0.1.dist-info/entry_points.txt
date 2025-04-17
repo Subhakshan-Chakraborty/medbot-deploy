@@ -1,0 +1,3 @@
+[console_scripts]
+protoc-gen-route=grpc_gateway.protobuf_plugin.main:main
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup - MedBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .auth-box {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 400px;
+        }
+        .auth-box h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #00bfff;
+        }
+        .auth-box input[type="text"],
+        .auth-box input[type="email"],
+        .auth-box input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #2c2c2e;
+            border: none;
+            color: white;
+            border-radius: 8px;
+        }
+        .auth-box button {
+            width: 100%;
+            background: #3e8ef7;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .auth-box button:hover {
+            background: #2e74d4;
+        }
+        .auth-box p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .auth-box a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+        .auth-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-box">
+        <h2>Create Your MedBot Account</h2>
+        <form method="POST" action="/signup">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Signup</button>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>

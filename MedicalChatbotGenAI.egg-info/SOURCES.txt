@@ -1,0 +1,7 @@
+LICENSE
+README.md
+setup.py
+MedicalChatbotGenAI.egg-info/PKG-INFO
+MedicalChatbotGenAI.egg-info/SOURCES.txt
+MedicalChatbotGenAI.egg-info/dependency_links.txt
+MedicalChatbotGenAI.egg-info/top_level.txt

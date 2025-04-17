@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedBot - Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body class="dark-mode">
+    <div class="chat-layout">
+
+        <!-- SIDEBAR -->
+        <div class="chat-sidebar">
+            <div class="sidebar-header">
+                <h2>💬 MedBot</h2>
+                <a href="/new_chat"><button class="new-chat-btn">+ New Chat</button></a>
+            </div>
+
+            <div class="recent-chats">
+                <h3>Recent Chats</h3>
+                <ul>
+                    {% for s in sessions %}
+                        <li class="{% if s.id == active_session_id %}active{% endif %}">
+                            <a href="/?session_id={{ s.id }}">Chat {{ loop.revindex }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAT MAIN WINDOW -->
+        <div class="chat-wrapper">
+            <div class="chat-window glass">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="chat-avatar">
+                        <div>
+                            <h3>MedBot</h3>
+                            <small>Your personal health assistant</small>
+                        </div>
+                    </div>
+                    
+                    <form action="/logout" method="GET">
+                        <button class="logout-btn">Logout</button>
+                    </form>
+                </div>
+
+                <div id="messageFormeight" class="chat-body">
+                    {% for chat in chat_history %}
+                        <div class="message user-message">
+                            <div class="bubble">{{ chat.message }}</div>
+                            <span class="timestamp">{{ chat.timestamp.strftime('%H:%M') }}</span>
+                        </div>
+                        <div class="message bot-message">
+                            <div class="bubble">{{ chat.response }}</div>
+                            <span class="timestamp">{{ chat.timestamp.strftime('%H:%M') }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="chat-footer">
+                    <form id="messageArea">
+                        <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off" required/>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <form action="/clear" method="POST">
+                        <button class="clear-btn">Clear History</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $("#messageArea").on("submit", function(event) {
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + (minute < 10 ? "0" + minute : minute);
+            var rawText = $("#text").val();
+
+            var userHtml = '<div class="message user-message"><div class="bubble">' + rawText + '</div><span class="timestamp">' + str_time + '</span></div>';
+            $("#text").val("");
+            $("#messageFormeight").append(userHtml);
+
+            $.ajax({
+                data: { msg: rawText },
+                type: "POST",
+                url: "/get",
+            }).done(function(data) {
+                var botResponse = data.response || "Error: No response from chatbot";
+                var botHtml = '<div class="message bot-message"><div class="bubble">' + botResponse + '</div><span class="timestamp">' + str_time + '</span></div>';
+                $("#messageFormeight").append($.parseHTML(botHtml));
+            });
+
+            event.preventDefault();
+        });
+    });
+    </script>
+</body>
+</html>

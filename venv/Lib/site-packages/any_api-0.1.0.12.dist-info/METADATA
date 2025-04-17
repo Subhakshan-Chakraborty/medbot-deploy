@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: any-api
+Version: 0.1.0.12
+Summary: Quick and easy to create OpenAPI/AsyncAPI, and provide corresponding extensions
+License: Apache-2.0
+Author: so1n
+Author-email: qaz6803609@163.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: pydantic (>=1.9.2,<3.0.0,!=2.0.3,!=2.1.0)
