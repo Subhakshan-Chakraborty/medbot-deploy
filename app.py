@@ -15,12 +15,12 @@ import os
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
 
-# ✅ DATABASE CONFIG
+# DATABASE
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-# ✅ Login Manager
+# LOGIN
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
@@ -31,17 +31,15 @@ def load_user(user_id):
 
 app.register_blueprint(auth)
 
-# ✅ API Keys
+# ENV & Embeddings
 load_dotenv()
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
-# ✅ RAG Setup
 embeddings = download_hugging_face_embeddings()
 index_name = "medicalbot"
-
 docsearch = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=embeddings)
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
@@ -56,11 +54,10 @@ prompt = ChatPromptTemplate.from_messages([
     ("system", system_prompt),
     ("human", "{input}"),
 ])
-
 question_answer_chain = create_stuff_documents_chain(llm, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
-# ---------------- ROUTES ---------------- #
+# ROUTES
 
 @app.route("/home")
 def home():
@@ -95,10 +92,8 @@ def index():
         session_id=selected_session_id
     ).order_by(ChatHistory.timestamp).all()
 
-    # Profile initials
     initials = get_initials(current_user.name) if current_user.name else "U"
 
-    # Sidebar previews
     session_previews = []
     for i, session in enumerate(user_sessions):
         latest = ChatHistory.query.filter_by(
@@ -188,7 +183,7 @@ def delete_chat(session_id):
     db.session.commit()
     return redirect(url_for("index"))
 
-# ---------------- DB INIT ---------------- #
+# DB INIT
 with app.app_context():
     db.create_all()
 
